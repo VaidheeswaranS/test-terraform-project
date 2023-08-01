@@ -47,8 +47,8 @@ pipeline {
                         cd ${workspace}
                         mkdir provision
                         cp terraform provision/
-                        cp -Rf Challenge - 1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tf provision/
-                        cp -Rf Challenge - 1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tfvars provision/
+                        cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tf provision/
+                        cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tfvars provision/
                         ls -l provision/
                     """
                     echo "Checking the terraform version"
