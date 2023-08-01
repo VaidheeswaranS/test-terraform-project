@@ -1,0 +1,67 @@
+#!groovy
+
+String prmNameTerrafromAction = "terraformaction"
+String prmNameAWSResource = "awsresource"
+
+def PROPERTIES_PARAM = [ 
+    choice( choices : ['apply', 'destroy'],
+        description: "The terraform action that need to performed on the resources",
+        name: prmNameTerrafromAction),
+
+    choice( choices: ['vpc', 'ec2-web', 'ec2-app', 'alb-web', 'alb-app', 'rds'],
+        description: "AWS Resource that need to be provisioned",
+        name: prmNameAWSResource)
+]
+
+def PRM_TERRAFORM_ACTION = params[prmNameTerrafromAction]
+def PRM_AWS_RESOURCE = params[prmNameAWSResource]
+
+properties([
+    parameters(PROPERTIES_PARAM)
+])
+
+pipeline {
+    agent any
+
+    stages {
+        stage ('Downloading Terraform') {
+            steps {
+                script {
+                    echo "Downloading the terraform binary"
+                    sh """
+                        wget https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip
+                        unzip terraform_0.13.5_linux_amd64.zip
+                        ls -l
+                    """
+                }
+            }
+        }
+
+        stage ('Running terraform init') {
+            steps {
+                script {
+                    echo "Setting up the workspace"
+                    sh """
+                        export AWS_DEFAULT_REGION=us-west-2
+                        echo "workspace is ${workspace}"
+                        cd ${workspace}
+                        mkdir provision
+                        cp terraform provision/
+                        cp -Rf resources/$PRM_AWS_RESOURCE/*.tf provision/
+                        cp -Rf resources/$PRM_AWS_RESOURCE/*.tfvars provision/
+                        ls -l provision/
+                    """
+                    echo "Checking the terraform version"
+                    sh """
+                        cd provision/
+                        ./terraform --version
+                    """
+                    echo "Running the terraform init command"
+                    sh """
+                        cd provision/
+                        ./ terraform init 
+                }
+            }
+        }
+    }
+}
