@@ -77,21 +77,21 @@ pipeline {
         //     }
         // }
 
-        stage ('Running terraform plan') {
-            environment {
-                AWS_KEYS = credentials('aws-creds')
-            }
-            steps {
-                script {
-                    echo "Running the terraform plan command"
-                    sh """
-                        export AWS_DEFAULT_REGION=us-west-2
-                        cd provision/
-                        ./terraform plan --backend-config="access_key=$AWS_KEYS_USR" --backend-config="secret_key=$AWS_KEYS_PSW"
-                    """
-                }
-            }
-        }
+        // stage ('Running terraform plan') {
+        //     environment {
+        //         AWS_KEYS = credentials('aws-creds')
+        //     }
+        //     steps {
+        //         script {
+        //             echo "Running the terraform plan command"
+        //             sh """
+        //                 export AWS_DEFAULT_REGION=us-west-2
+        //                 cd provision/
+        //                 ./terraform plan --backend-config="access_key=$AWS_KEYS_USR" --backend-config="secret_key=$AWS_KEYS_PSW"
+        //             """
+        //         }
+        //     }
+        // }
     }
 
     post {
