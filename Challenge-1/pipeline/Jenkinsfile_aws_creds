@@ -24,24 +24,20 @@ pipeline {
     agent any
 
     stages {
-        stage ('Downloading Terraform') {
-            steps {
-                script {
-                    echo "Downloading the terraform binary"
-                    sh """
-                        wget https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip
-                        unzip terraform_0.13.5_linux_amd64.zip
-                        ls -l
-                    """
-                }
-            }
-        }
+        // stage ('Downloading Terraform') {
+        //     steps {
+        //         script {
+        //             echo "Downloading the terraform binary"
+        //             sh """
+        //                 wget https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip
+        //                 unzip terraform_0.13.5_linux_amd64.zip
+        //                 ls -l
+        //             """
+        //         }
+        //     }
+        // }
 
         stage ('Running terraform init') {
-            environment {
-                AWS_KEYS = credentials('aws-creds')
-            }
-
             steps {
                 script {
                     echo "Setting up the workspace"
@@ -59,12 +55,12 @@ pipeline {
                     echo "Checking the terraform version"
                     sh """
                         cd provision/
-                        ./terraform --version
+                        terraform --version
                     """
                     echo "Running the terraform init command"
                     sh """
                         cd provision/
-                        ./terraform init --backend-config="access_key=$AWS_KEYS_USR" --backend-config="secret_key=$AWS_KEYS_PSW"
+                        terraform init
                     """
                 }
             }
