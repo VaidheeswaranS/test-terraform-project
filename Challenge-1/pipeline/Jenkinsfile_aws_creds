@@ -46,7 +46,6 @@ pipeline {
                         echo "workspace is ${workspace}"
                         cd ${workspace}
                         mkdir provision
-                        cp terraform provision/
                         cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tf provision/
                         cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tfvars provision/
                         ls -l
@@ -57,11 +56,11 @@ pipeline {
                         cd provision/
                         terraform --version
                     """
-                    echo "Running the terraform init command"
-                    sh """
-                        cd provision/
-                        terraform init
-                    """
+                    // echo "Running the terraform init command"
+                    // sh """
+                    //     cd provision/
+                    //     terraform init
+                    // """
                 }
             }
         }
