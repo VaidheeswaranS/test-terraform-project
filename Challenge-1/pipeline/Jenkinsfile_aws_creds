@@ -82,18 +82,21 @@ pipeline {
         //     }
         // }
 
-        // stage ('Running terraform plan') {
-        //     steps {
-        //         script {
-        //             echo "Running the terraform plan command"
-        //             sh """
-        //                 export AWS_DEFAULT_REGION=us-west-2
-        //                 cd provision/
-        //                 ./terraform plan
-        //             """
-        //         }
-        //     }
-        // }
+        stage ('Running terraform plan') {
+            environment {
+                AWS_KEYS = credentials('aws-creds')
+            }
+            steps {
+                script {
+                    echo "Running the terraform plan command"
+                    sh """
+                        export AWS_DEFAULT_REGION=us-west-2
+                        cd provision/
+                        ./terraform plan
+                    """
+                }
+            }
+        }
     }
 
     post {
