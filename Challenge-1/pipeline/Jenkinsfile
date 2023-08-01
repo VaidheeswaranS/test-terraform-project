@@ -72,7 +72,7 @@ pipeline {
                     echo "running aws cli command"
                     sh """
                         aws s3 ls
-                        aws s3api create-bucket --bucket terraform-hsgcjsbcjhs-1234 --create-bucket-configuration LocationConstraint=us-west-2"
+                        aws s3api create-bucket --bucket terraform-hsgcjsbcjhs-1234 --create-bucket-configuration LocationConstraint=us-west-2
                     """
                 }
             }
