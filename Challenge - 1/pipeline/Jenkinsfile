@@ -37,11 +37,30 @@ pipeline {
             }
         }
 
-        stage ('checking terraform version') {
+        stage ('Running terraform init') {
             steps {
                 script {
-                    echo "this is working"
-                    echo "proceed to next steps"
+                    echo "Setting up the workspace"
+                    sh """
+                        export AWS_DEFAULT_REGION=us-west-2
+                        echo "workspace is ${workspace}"
+                        cd ${workspace}
+                        mkdir provision
+                        cp terraform provision/
+                        cp -Rf Challenge - 1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tf provision/
+                        cp -Rf Challenge - 1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tfvars provision/
+                        ls -l provision/
+                    """
+                    echo "Checking the terraform version"
+                    sh """
+                        cd provision/
+                        ./terraform --version
+                    """
+                    // echo "Running the terraform init command"
+                    // sh """
+                    //     cd provision/
+                    //     ./ terraform init
+                    // """
                 }
             }
         }
