@@ -37,40 +37,55 @@ pipeline {
             }
         }
 
-        stage ('Running terraform init') {
+        stage ('Checking the credentials') {
+            environment {
+                AWS_KEYS = credentials('github-creds')
+            }
+
             steps {
-                withCredentials([
-                    usernamePassword(credentialsId: AWS_CREDENTIALS_USR_PWD, usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')
-                ]) {
-                    script {
-                        echo "Setting up the workspace"
-                        sh """
-                            export AWS_DEFAULT_REGION=us-west-2
-                            echo "workspace is ${workspace}"
-                            cd ${workspace}
-                            mkdir provision
-                            cp terraform provision/
-                            cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tf provision/
-                            cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tfvars provision/
-                            ls -l
-                            ls -l provision/
-                            echo "bucket list is"
-                            aws s3 ls
-                        """
-                        echo "Checking the terraform version"
-                        sh """
-                            cd provision/
-                            ./terraform --version
-                        """
-                        echo "Running the terraform init command"
-                        sh """
-                            cd provision/
-                            ./terraform init
-                        """
-                    }
+                script {
+                    sh """
+                        echo "Service user is $AWS_KEYS_USR"
+                        echo "Service password is $AWS_KEYS_PSW"
+                    """
                 }
             }
         }
+
+        // stage ('Running terraform init') {
+        //     steps {
+        //         withCredentials([
+        //             usernamePassword(credentialsId: AWS_CREDENTIALS_USR_PWD, usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')
+        //         ]) {
+        //             script {
+        //                 echo "Setting up the workspace"
+        //                 sh """
+        //                     export AWS_DEFAULT_REGION=us-west-2
+        //                     echo "workspace is ${workspace}"
+        //                     cd ${workspace}
+        //                     mkdir provision
+        //                     cp terraform provision/
+        //                     cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tf provision/
+        //                     cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tfvars provision/
+        //                     ls -l
+        //                     ls -l provision/
+        //                     echo "bucket list is"
+        //                     aws s3 ls
+        //                 """
+        //                 echo "Checking the terraform version"
+        //                 sh """
+        //                     cd provision/
+        //                     ./terraform --version
+        //                 """
+        //                 echo "Running the terraform init command"
+        //                 sh """
+        //                     cd provision/
+        //                     ./terraform init
+        //                 """
+        //             }
+        //         }
+        //     }
+        // }
 
         // stage ('checking aws commands working or not') {
         //     steps {
