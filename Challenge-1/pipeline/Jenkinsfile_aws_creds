@@ -37,21 +37,6 @@ pipeline {
             }
         }
 
-        stage ('Checking the credentials') {
-            environment {
-                GITHUB_KEYS = credentials('github-creds')
-            }
-
-            steps {
-                script {
-                    sh """
-                        echo "Service user is $GITHUB_KEYS_USR"
-                        echo "Service password is $GITHUB_KEYS_PSW"
-                    """
-                }
-            }
-        }
-
         stage ('Running terraform init') {
             environment {
                 AWS_KEYS = credentials('aws-creds')
@@ -70,10 +55,6 @@ pipeline {
                         cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tfvars provision/
                         ls -l
                         ls -l provision/
-                        export AWS_ACCESS_KEY_ID=$AWS_KEYS_USR
-                        export AWS_SECRET_ACCESS_KEY=$AWS_KEYS_PSW
-                        echo "bucket list is"
-                        aws s3 ls
                     """
                     echo "Checking the terraform version"
                     sh """
