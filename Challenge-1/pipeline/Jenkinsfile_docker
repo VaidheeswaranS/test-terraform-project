@@ -1,0 +1,69 @@
+#!groovy
+
+String prmNameTerrafromAction = "terraformaction"
+String prmNameAWSResource = "awsresource"
+
+def PROPERTIES_PARAM = [ 
+    choice( choices : ['apply', 'destroy'],
+        description: "The terraform action that need to performed on the resources",
+        name: prmNameTerrafromAction),
+
+    choice( choices: ['vpc', 'ec2-web', 'ec2-app', 'alb-web', 'alb-app', 'rds'],
+        description: "AWS Resource that need to be provisioned",
+        name: prmNameAWSResource)
+]
+
+def PRM_TERRAFORM_ACTION = params[prmNameTerrafromAction]
+def PRM_AWS_RESOURCE = params[prmNameAWSResource]
+
+properties([
+    parameters(PROPERTIES_PARAM)
+])
+
+pipeline {
+    agent {
+        docker {
+            image 'hashicorp/terraform:0.13.5'
+        }
+    }
+
+    stages {
+        stage ('Setting up the workspace') {
+            steps { 
+                script {
+                    echo "setting up the workspace"
+                    sh """
+                        export AWS_DEFAULT_REGION=us-west-2
+                        echo "workspace is ${workspace}"
+                        cd ${workspace}
+                        mkdir provision
+                        cp terraform provision/
+                        cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tf provision/
+                        cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tfvars provision/
+                        ls -l
+                        ls -l provision/
+                    """
+                }
+            }
+        }
+        stage ('Checking terrform version and Running terraform init') {
+            steps {
+                script {
+                    sh """
+                        pwd
+                        cd provision/
+                        terraform version
+                        terraform init
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'cleaning the workspace'
+            cleanWs()
+        }
+    }
+}
