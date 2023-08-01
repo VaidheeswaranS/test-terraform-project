@@ -66,18 +66,30 @@ pipeline {
             }
         }
 
-        stage ('Running terraform plan') {
+        stage ('checking aws commands working or not') {
             steps {
                 script {
-                    echo "Running the terraform plan command"
+                    echo "running aws cli command"
                     sh """
-                        export AWS_DEFAULT_REGION=us-west-2
-                        cd provision/
-                        ./terraform plan
+                        aws s3 ls
+                        aws s3api create-bucket --bucket terraform-hsgcjsbcjhs-1234 --create-bucket-configuration LocationConstraint=us-west-2"
                     """
                 }
             }
         }
+
+        // stage ('Running terraform plan') {
+        //     steps {
+        //         script {
+        //             echo "Running the terraform plan command"
+        //             sh """
+        //                 export AWS_DEFAULT_REGION=us-west-2
+        //                 cd provision/
+        //                 ./terraform plan
+        //             """
+        //         }
+        //     }
+        // }
     }
 
     post {
