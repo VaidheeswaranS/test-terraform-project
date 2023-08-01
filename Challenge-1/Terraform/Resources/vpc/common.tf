@@ -1,9 +1,9 @@
 terraform {
     required_version = ">= 0.11.11"
     backend "s3" {
-        bucket = "terraform-tfstate-kpmg"
+        bucket = "terraform-remote-state-12354"
         key    = "vpc/terraform.tfstate"
-        region = "eu-west-2"
+        region = "us-west-2"
     }
 }
 

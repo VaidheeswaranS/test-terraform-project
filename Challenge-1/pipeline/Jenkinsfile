@@ -56,11 +56,11 @@ pipeline {
                         cd provision/
                         ./terraform --version
                     """
-                    // echo "Running the terraform init command"
-                    // sh """
-                    //     cd provision/
-                    //     ./ terraform init
-                    // """
+                    echo "Running the terraform init command"
+                    sh """
+                        cd provision/
+                        ./ terraform init
+                    """
                 }
             }
         }
