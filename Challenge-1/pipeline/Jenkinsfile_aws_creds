@@ -37,34 +37,38 @@ pipeline {
             }
         }
 
-        // stage ('Running terraform init') {
-        //     steps {
-        //         script {
-        //             echo "Setting up the workspace"
-        //             sh """
-        //                 export AWS_DEFAULT_REGION=us-west-2
-        //                 echo "workspace is ${workspace}"
-        //                 cd ${workspace}
-        //                 mkdir provision
-        //                 cp terraform provision/
-        //                 cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tf provision/
-        //                 cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tfvars provision/
-        //                 ls -l
-        //                 ls -l provision/
-        //             """
-        //             echo "Checking the terraform version"
-        //             sh """
-        //                 cd provision/
-        //                 ./terraform --version
-        //             """
-        //             echo "Running the terraform init command"
-        //             sh """
-        //                 cd provision/
-        //                 ./terraform init
-        //             """
-        //         }
-        //     }
-        // }
+        stage ('Running terraform init') {
+            steps {
+                withAWS(credentials: 'AWS_CREDENTIALS', region: 'us-west-2') {
+                    script {
+                        echo "Setting up the workspace"
+                        sh """
+                            export AWS_DEFAULT_REGION=us-west-2
+                            echo "workspace is ${workspace}"
+                            cd ${workspace}
+                            mkdir provision
+                            cp terraform provision/
+                            cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tf provision/
+                            cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/*.tfvars provision/
+                            ls -l
+                            ls -l provision/
+                            echo "bucket list is"
+                            aws s3 ls
+                        """
+                        echo "Checking the terraform version"
+                        sh """
+                            cd provision/
+                            ./terraform --version
+                        """
+                        echo "Running the terraform init command"
+                        sh """
+                            cd provision/
+                            ./terraform init
+                        """
+                    }
+                }
+            }
+        }
 
         // stage ('checking aws commands working or not') {
         //     steps {
