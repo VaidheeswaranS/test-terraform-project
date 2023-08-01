@@ -24,19 +24,6 @@ pipeline {
     agent any
 
     stages {
-        // stage ('Downloading Terraform') {
-        //     steps {
-        //         script {
-        //             echo "Downloading the terraform binary"
-        //             sh """
-        //                 wget https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip
-        //                 unzip terraform_0.13.5_linux_amd64.zip
-        //                 ls -l
-        //             """
-        //         }
-        //     }
-        // }
-
         stage ('Running terraform init') {
             steps {
                 script {
@@ -64,18 +51,6 @@ pipeline {
                 }
             }
         }
-
-        // stage ('checking aws commands working or not') {
-        //     steps {
-        //         script {
-        //             echo "running aws cli command"
-        //             sh """
-        //                 aws s3 ls
-        //                 aws s3api create-bucket --bucket terraform-hsgcjsbcjhs-1234 --create-bucket-configuration LocationConstraint=us-west-2
-        //             """
-        //         }
-        //     }
-        // }
 
         stage ('Running terraform plan') {
             steps {
