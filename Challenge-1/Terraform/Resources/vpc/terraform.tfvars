@@ -8,9 +8,9 @@ pub_sub_cidr_block = [
 ]
 
 availability_zone = [
-    "eu-west-2a",
-    "eu-west-2b",
-    "eu-west-2c"
+    "us-west-2a",
+    "us-west-2b",
+    "us-west-2c"
 ]
 
 az_id = [
