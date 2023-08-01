@@ -59,7 +59,7 @@ pipeline {
                     echo "Running the terraform init command"
                     sh """
                         cd provision/
-                        ./ terraform init
+                        ./terraform init
                     """
                 }
             }
