@@ -83,7 +83,7 @@ pipeline {
                     echo "Running the terraform init command"
                     sh """
                         cd provision/
-                        ./terraform init
+                        ./terraform init --backend-config="access_key=$AWS_KEYS_USR" --backend-config="secret_key=$AWS_KEYS_PSW"
                     """
                 }
             }
