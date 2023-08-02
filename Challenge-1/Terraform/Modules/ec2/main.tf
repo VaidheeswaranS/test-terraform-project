@@ -34,5 +34,5 @@ resource "aws_instance" "tf_instance" {
         }
     }
     volume_tags                 = var.volume_tags
-    tags                        = merge(map("Name", var.instance_count > 1 ? format("%s-%d", var.name, count.index+1) : var.name), var.tags)
+    tags                        = merge(tomap({"Name" = var.instance_count > 1 ? format("%s-%d", var.name, count.index+1) : var.name}), var.tags)
 }
