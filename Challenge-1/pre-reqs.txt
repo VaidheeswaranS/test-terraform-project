@@ -34,5 +34,3 @@ public-ip:8080
 Configure the Jenkins with default values
 plugins to be installed "Cloudbees AWS Credentials" & "Terraform"
 add terraform tool in global tool configuration
-
-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
