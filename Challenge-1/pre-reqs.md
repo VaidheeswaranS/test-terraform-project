@@ -60,7 +60,7 @@
 	```
 	http://<public-ip>:8080
 	```
-- Create a pipeline project and use the Jenkinsfile provided under ```Challenge-1/pipeline/Jenkinsfile```
+- Create a pipeline project (use pipeline from SCM and add the gihub details) and use the Jenkinsfile provided under ```Challenge-1/pipeline/Jenkinsfile``` in script path
 
 - Run the job and abort the first build once it starts (to refresh the job parameters)
 
