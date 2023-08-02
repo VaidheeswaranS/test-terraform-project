@@ -47,3 +47,24 @@
 - Please add the plugin ```Terraform``` and restart the Jenkins service
 
 - Add terraform tool in global tool configuration (specify the installation path for terraform and uncheck "Install automatically" option)
+
+# Challenge-1 Implementation
+
+- Go to your Jenkins endpoint
+	```
+	http://<public-ip>:8080
+	```
+- Create a pipeline project and use the Jenkinsfile provided under ```Challenge-1/pipeline/Jenkinsfile```
+
+- Run the job and abort the first build once it starts (to refresh the job parameters)
+
+- Now run the job with the parameters and please create the resources in the following order
+	```
+	vpc
+	ec2-web
+	ec2-app
+	alb-web
+	alb-app
+	rds
+	```
+
