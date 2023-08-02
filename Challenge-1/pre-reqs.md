@@ -46,4 +46,4 @@
 
 - Please add the plugin ```Terraform``` and restart the Jenkins service
 
-- Add terraform tool in global tool configuration (specify the installation path for terraform and uncheck Install automatically)
+- Add terraform tool in global tool configuration (specify the installation path for terraform and uncheck "Install automatically" option)
