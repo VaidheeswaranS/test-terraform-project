@@ -17,7 +17,7 @@ data "terraform_remote_state" "vpc" {
     }
 }
 
-data "aws_subnet_ids" "subnet_ids" {
+data "aws_subnets" "subnet_ids" {
     vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
     tags   = {
         Name = var.subnet_filter
