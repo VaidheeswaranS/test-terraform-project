@@ -1,7 +1,13 @@
 # Pre-Requisites for all Challenges
 
-AWS account
-AWS CLI with credentails for creating required resources
+- AWS account
+- AWS CLI with credentails for creating required resources
+
+> [!NOTE]
+> I have used us-west-2 (Oregon) for performing all the activities
+
+> [!WARNING]
+> Please change the region appropriately if you are using other than us-west-2
 
 # pre-reqs for Challenge-1
 
@@ -26,14 +32,14 @@ AWS CLI with credentails for creating required resources
 	> --user-data file://script.sh \
 	> --region us-west-2
 	```
-- Create a S3 bucket to store the terraform state file
+- Create a S3 bucket to store the terraform state file from the cloudshell
 	```
 	aws s3api create-bucket --bucket terraform-remote-state-12354 --create-bucket-configuration LocationConstraint=us-west-2
 	```
 
 - Wait for the EC2 to get 2/2 status check and then hit the below endpoint
 	```
-	public-ip:8080
+	http://public-ip:8080
 	```
 
 - Configure the Jenkins with default values
