@@ -48,7 +48,7 @@
 	http://public-ip:8080
 	```
 
-- Configure the Jenkins with default values
+- Configure the Jenkins with default values (Use EC2 Instance connect to login to instance to get the initial admin password and to check logs and restart services)
 
 - Please add the plugin ```Terraform``` and restart the Jenkins service
 
