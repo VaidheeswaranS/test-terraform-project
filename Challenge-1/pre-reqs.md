@@ -26,6 +26,7 @@
 
 > [!WARNING]
 > Change the SG id and Image id IAM role and region according to your data
+
 	```
 	aws ec2 run-instances \
 	> --image-id ami-089ffe32605122764 \
