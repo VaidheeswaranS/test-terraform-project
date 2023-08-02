@@ -12,9 +12,11 @@
 # pre-reqs for Challenge-1
 
 - Create a Security group with below inbound rules for jenkins instance in the default vpc
+	```
 	22 from your IP
 	80 from anywhere
 	8080 from anywhere
+	```
 
 - IAM role for Jenkins instance with right persmissions
 
