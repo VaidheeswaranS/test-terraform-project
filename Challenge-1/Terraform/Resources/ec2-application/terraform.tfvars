@@ -1,10 +1,10 @@
 instance_count              = 3
 name                        = "app-server"
-ami                         = "ami-02f5781cba46a5e8a"
+ami                         = "ami-089ffe32605122764"
 instance_type               = "t2.micro"
 subnet_filter               = "pri-sub-*"
 associate_public_ip_address = false
-key_name                    = "london"
+key_name                    = "ec2"
 user_data                   = "user_data.sh"
 
 root_block_device = [

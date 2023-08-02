@@ -9,7 +9,7 @@ module "ec2_instance" {
     ami                         = var.ami
     tenancy                     = var.tenancy
     instance_type               = var.instance_type
-    subnet_id                   = data.aws_subnet_ids.subnet_ids.ids
+    subnet_id                   = data.aws_subnets.subnet_ids.ids
     associate_public_ip_address = var.associate_public_ip_address
     key_name                    = var.key_name
     disable_api_termination     = var.disable_api_termination
