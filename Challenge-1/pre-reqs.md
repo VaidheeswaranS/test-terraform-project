@@ -25,7 +25,7 @@
 - Create a EC2 instance for Jenkins from the cloudshell (once the above three steps are completed)
 
 > [!WARNING]
-> Change the SG id and Image id IAM role and region according to your data
+> Change the security group, Image, IAM role and region according to your data
 
 	```
 	aws ec2 run-instances \
