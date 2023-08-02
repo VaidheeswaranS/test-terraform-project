@@ -23,11 +23,14 @@
 - Open the cloudshell and copy the contents from ```user-data.sh``` and save the file
 
 - Create a EC2 instance for Jenkins from the cloudshell (once the above three steps are completed)
+
+> [!WARNING]
+> Change the SG id and Image id IAM role and region according to your data
 	```
 	aws ec2 run-instances \
 	> --image-id ami-089ffe32605122764 \
 	> --count 1 \
-	> --instance-type t2.micro \
+	> --instance-type t2.large \
 	> --security-group-ids sg-0aca51b53876e08a5 \
 	> --iam-instance-profile Name=EC2JenkinsAdminRole \
 	> --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=jenkins-instance}]' \
