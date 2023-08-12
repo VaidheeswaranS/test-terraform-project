@@ -38,9 +38,11 @@
 	> --user-data file://script.sh \
 	> --region us-west-2
 	```
-- Create a S3 bucket to store the terraform state file from the cloudshell
+- Create a S3 bucket and enable versioning for the s3 bucket to store the terraform state file from the cloudshell
 	```
 	aws s3api create-bucket --bucket terraform-remote-state-12354 --create-bucket-configuration LocationConstraint=us-west-2
+
+	aws s3api put-bucket-versioning --bucket terraform-remote-state-12354 --versioning-configuration Status=Enabled
 	```
 
 - Wait for the EC2 to get 2/2 status check and then hit the below endpoint
