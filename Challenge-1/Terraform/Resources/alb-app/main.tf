@@ -1,11 +1,11 @@
 
 module "alb" {
-    source                           = "../../Modules/alb"
+    source                           = "../Challenge-1/Terraform/Modules/alb"
     create_lb                        = var.create_lb
     name                             = var.name
     is_load_balancer_internal        = var.is_load_balancer_internal
     security_groups                  = [data.terraform_remote_state.vpc.outputs.vpc_default_security_group]
-    subnets                          = data.aws_subnet_ids.subnet_ids.ids
+    subnets                          = data.aws_subnets.subnet_ids.ids
     idle_timeout                     = var.idle_timeout
     enable_deletion_protection       = var.enable_deletion_protection
     enable_cross_zone_load_balancing = var.enable_cross_zone_load_balancing

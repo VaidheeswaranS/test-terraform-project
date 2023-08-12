@@ -26,3 +26,28 @@ tg_tags = {
     "Name"         = "app-tg"
     "Type"         = "app servers TG"
 }
+
+sg_name = "app_alb_security_group"
+
+sg_tags = {
+    "description" = "The security group that allows HTTP access from anywhere within the VPC"
+}
+
+sg_rules = [
+    {
+        type        = "ingress"
+        description = "Allow HTTP access from anywhere"
+        from_port   = "80"
+        to_port     = "80"
+        protocol    = "TCP"
+        cidr_blocks = ["10.0.0.0/16"] # IP Range from the VPC (internal to apps hosted on this vpc)
+    },
+    {
+        type        = "egress"
+        description = "Allow all access"
+        from_port   = "-1"
+        to_port     = "-1"
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+]
