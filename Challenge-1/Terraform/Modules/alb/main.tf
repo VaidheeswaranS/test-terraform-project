@@ -83,19 +83,19 @@ resource "aws_lb_listener" "frontend_http_tcp" {
     }
 }
 
-resource "aws_lb_listener" "frontend_https" {
-    count             = var.create_lb ? length(var.https_listeners) : 0 
-    load_balancer_arn = aws_lb.tf_alb.*.arn
-    port              = lookup(var.https_listeners[count.index], "port")
-    protocol          = lookup(var.https_listeners[count.index], "protocol")
-    ssl_policy        = lookup(var.https_listeners[count.index], "ssl_policy")
-    certificate_arn   = lookup(var.https_listeners[count.index], "certificate_arn")
+# resource "aws_lb_listener" "frontend_https" {
+#     count             = var.create_lb ? length(var.https_listeners) : 0 
+#     load_balancer_arn = aws_lb.tf_alb.*.arn
+#     port              = lookup(var.https_listeners[count.index], "port")
+#     protocol          = lookup(var.https_listeners[count.index], "protocol")
+#     ssl_policy        = lookup(var.https_listeners[count.index], "ssl_policy")
+#     certificate_arn   = lookup(var.https_listeners[count.index], "certificate_arn")
 
-    default_action {
-        type = "forward"
-        target_group_arn = aws_lb_target_group.tf_target_group.*.id[lookup(var.https_listeners[count.index], "target_group_index", 0)]
-    }
-}
+#     default_action {
+#         type = "forward"
+#         target_group_arn = aws_lb_target_group.tf_target_group.*.id[lookup(var.https_listeners[count.index], "target_group_index", 0)]
+#     }
+# }
 
 resource "aws_lb_listener" "redirect_http_to_https" {
     count             = var.create_lb ? length(var.https_listeners) : 0
