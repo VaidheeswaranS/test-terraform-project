@@ -135,21 +135,3 @@ variable "subnet_filter" {
     type = string
     default = ""
 }
-
-variable "sg_name" {
-    description = "The name for the security group"
-    type = string
-    default = ""
-}
-
-variable "sg_tags" {
-    description = "The tags need to be given to the alb security group"
-    type = map
-    default = {}
-}
-
-variable "sg_rules" {
-    description = "The list of ingress and egress rules for the security group"
-    type = list
-    default = []
-}
