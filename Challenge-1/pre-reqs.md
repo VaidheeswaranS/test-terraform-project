@@ -69,10 +69,12 @@
 - Now run the job with the parameters and please create the resources in the following order
 	```
 	vpc
-	ec2-web
-	ec2-app
 	alb-web
+	ec2-web
+	register the web instance as targets for web alb (using console)
 	alb-app
+	ec2-app
+	register the app instance as targets for app alb (using console)
 	rds
 	```
 
