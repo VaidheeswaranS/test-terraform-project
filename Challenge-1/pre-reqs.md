@@ -25,18 +25,18 @@
 - Create a EC2 instance for Jenkins from the cloudshell (once the above three steps are completed)
 
 > [!WARNING]
-> Change the security group, Image, IAM role and region according to your data
+> Change the security group, Image, IAM role and region according to your use case
 
 	```
 	aws ec2 run-instances \
-	> --image-id ami-089ffe32605122764 \
-	> --count 1 \
-	> --instance-type t2.large \
-	> --security-group-ids sg-0aca51b53876e08a5 \
-	> --iam-instance-profile Name=EC2JenkinsAdminRole \
-	> --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=jenkins-instance}]' \
-	> --user-data file://script.sh \
-	> --region us-west-2
+	--image-id ami-089ffe32605122764 \
+	--count 1 \
+	--instance-type t2.medium \
+	--security-group-ids sg-0aca51b53876e08a5 \
+	--iam-instance-profile Name=EC2JenkinsAdminRole \
+	--tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=jenkins-instance}]' \
+	--user-data file://script.sh \
+	--region us-west-2
 	```
 - Create a S3 bucket and enable versioning for the s3 bucket to store the terraform state file from the cloudshell
 	```
