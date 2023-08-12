@@ -39,14 +39,6 @@ sg_rules = [
         from_port   = "22"
         to_port     = "22"
         protocol    = "TCP"
-        cidr_blocks = ["0.0.0.0/0"]
-    },
-    # {
-    #     type        = "ingress" 
-    #     description = "Allows HTTP access from anywhere"
-    #     from_port   = "80"
-    #     to_port     = "80"
-    #     protocol    = "TCP"
-    #     cidr_blocks = ["0.0.0.0/0"]
-    # }
+        cidr_blocks = ["0.0.0.0/0"] # Restrict this to a specific IP range or your IP to strict security
+    }
 ]
