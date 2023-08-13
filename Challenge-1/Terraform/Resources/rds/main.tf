@@ -4,7 +4,7 @@ locals {
 }
 
 module "db" {
-    source = "../../Modules/rds/db-instance"
+    source = "../Challenge-1/Terraform/Modules/rds/db-instance"
     create_db = var.create_db
     db_indentifier = var.db_indentifier
     engine = var.engine
@@ -33,7 +33,7 @@ module "db" {
 }
 
 module "db_subnet_group" {
-    source = "../../Modules/rds/db-subnet-group"
+    source = "../Challenge-1/Terraform/Modules/rds/db-subnet-group"
     name_prefix = var.db_indentifier
     subnet_ids = data.aws_subnet_ids.subnet_ids.ids
     identifier = var.db_indentifier
