@@ -35,6 +35,6 @@ module "db" {
 module "db_subnet_group" {
     source = "../Challenge-1/Terraform/Modules/rds/db-subnet-group"
     name_prefix = var.db_indentifier
-    subnet_ids = data.aws_subnet_ids.subnet_ids.ids
+    subnet_ids = data.aws_subnets.subnet_ids.ids
     identifier = var.db_indentifier
 }
