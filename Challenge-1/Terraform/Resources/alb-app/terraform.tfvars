@@ -27,7 +27,7 @@ tg_tags = {
     "Type"         = "app servers TG"
 }
 
-sg_name = "web_alb_security_group"
+sg_name = "app_alb_security_group"
 
 sg_tags = {
     "description" = "The security group that allows HTTP access from anywhere for the ALB"
