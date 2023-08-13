@@ -8,7 +8,7 @@ def PROPERTIES_PARAM = [
         description: "The terraform action that need to performed on the resources",
         name: prmNameTerrafromAction),
 
-    choice( choices: ['vpc', 'ec2-web', 'ec2-app', 'alb-web', 'alb-app', 'rds'],
+    choice( choices: ['vpc', 'alb-web', 'ec2-web', 'alb-app', 'ec2-app', 'rds'],
         description: "AWS Resource that need to be provisioned",
         name: prmNameAWSResource)
 ]
