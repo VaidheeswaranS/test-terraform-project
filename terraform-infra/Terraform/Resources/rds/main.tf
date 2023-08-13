@@ -4,7 +4,7 @@ locals {
 }
 
 module "db" {
-    source = "../Challenge-1/Terraform/Modules/rds/db-instance"
+    source = "../terraform-infra/Terraform/Modules/rds/db-instance"
     create_db = var.create_db
     db_indentifier = var.db_indentifier
     engine = var.engine

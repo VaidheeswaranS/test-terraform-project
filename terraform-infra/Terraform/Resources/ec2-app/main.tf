@@ -3,7 +3,7 @@ data "template_file" "user_data" {
 }
 
 module "ec2_instance" {
-    source                      = "../Challenge-1/Terraform/Modules/ec2"
+    source                      = "../terraform-infra/Terraform/Modules/ec2"
     name                        = var.name
     instance_count              = var.instance_count
     ami                         = var.ami

@@ -1,6 +1,6 @@
 
 module "vpc" {
-    source = "../Challenge-1/Terraform/Modules/vpc"
+    source = "../terraform-infra/Terraform/Modules/vpc"
     vpc_cidr_block = var.vpc_cidr_block
     instance_tenancy = var.instance_tenancy
     pub_sub_cidr_block = var.pub_sub_cidr_block

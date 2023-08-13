@@ -78,3 +78,13 @@
 	rds
 	```
 
+- Once all resources are created and if you want destroy all the resources please do it in the following order
+	```
+	rds
+	ec2-app
+	alb-app
+	ec2-web
+	alb-web
+	vpc
+	```
+

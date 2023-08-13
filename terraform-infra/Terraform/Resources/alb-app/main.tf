@@ -1,6 +1,6 @@
 
 module "alb" {
-    source                           = "../Challenge-1/Terraform/Modules/alb"
+    source                           = "../terraform-infra/Terraform/Modules/alb"
     create_lb                        = var.create_lb
     name                             = var.name
     is_load_balancer_internal        = var.is_load_balancer_internal

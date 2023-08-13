@@ -33,7 +33,7 @@ pipeline {
                         echo "workspace is ${workspace}"
                         cd ${workspace}
                         mkdir provision
-                        cp -Rf Challenge-1/Terraform/Resources/$PRM_AWS_RESOURCE/* provision/
+                        cp -Rf terraform-infra/Terraform/Resources/$PRM_AWS_RESOURCE/* provision/
                         ls -l
                         ls -l provision/
                     """
