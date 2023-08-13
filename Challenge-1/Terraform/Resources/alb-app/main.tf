@@ -4,7 +4,7 @@ module "alb" {
     create_lb                        = var.create_lb
     name                             = var.name
     is_load_balancer_internal        = var.is_load_balancer_internal
-    security_groups                  = [data.terraform_remote_state.vpc.outputs.vpc_default_security_group]
+    security_groups                  = concat([aws_security_group.tf_sg.id], [data.terraform_remote_state.vpc.outputs.vpc_default_security_group])
     subnets                          = data.aws_subnets.subnet_ids.ids
     idle_timeout                     = var.idle_timeout
     enable_deletion_protection       = var.enable_deletion_protection
