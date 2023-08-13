@@ -1,4 +1,4 @@
-# Pre-Requisites for all Challenges
+# Pre-Requisites
 
 - AWS account
 - AWS CLI with credentails for creating required resources
@@ -8,8 +8,6 @@
 
 > [!WARNING]
 > Please change the region appropriately if you are using other than us-west-2
-
-# pre-reqs for Challenge-1
 
 - Create a Security group with below inbound rules for jenkins instance in the default vpc
 	```
