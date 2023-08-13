@@ -1,5 +1,14 @@
 terraform {
-    required_version = ">= 0.11.11"
+    required_providers {
+      
+      aws = {
+        source = "hashicorp/aws"
+        version = "5.10.0"
+      }
+    }
+
+    required_version = ">= 1.1"
+
     backend "s3" {
         bucket = "terraform-remote-state-12354"
         key    = "ec2-application/terraform.tfstate"
