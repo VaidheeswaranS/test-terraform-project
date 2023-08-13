@@ -71,10 +71,10 @@
 	vpc
 	alb-web
 	ec2-web
-	register the web instance as targets for web alb (using console)
+	register the web instance as targets for web alb once 2/2 status check completed (using console)
 	alb-app
 	ec2-app
-	register the app instance as targets for app alb (using console)
+	register the app instance as targets for app alb once 2/2 status check completed (using console)
 	rds
 	```
 
