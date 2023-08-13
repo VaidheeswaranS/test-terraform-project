@@ -1,7 +1,7 @@
 # Pre-Requisites
 
 - AWS account
-- AWS CLI with credentails for creating required resources
+- AWS CLI with credentails for creating required resources (if you are planning to create resources other than using cloudshell)
 
 - Create a Security group with below inbound rules for instance for which we will be getting the metadata in the default vpc
 	```

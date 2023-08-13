@@ -1,7 +1,7 @@
 # Pre-Requisites
 
 - AWS account
-- AWS CLI with credentails for creating required resources
+- AWS CLI with credentails for creating required resources (if you are planning to create resources other than using cloudshell)
 
 > [!NOTE]
 > I have used us-west-2 (Oregon) for performing all the activities
