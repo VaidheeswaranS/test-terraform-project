@@ -64,18 +64,18 @@ pipeline {
             }
         }
 
-        // stage ('Running Terraform apply or destroy') {
-        //     steps {
-        //         script {
-        //             echo "Running the terraform $PRM_TERRAFORM_ACTION command"
-        //             sh """
-        //                 export AWS_DEFAULT_REGION=us-west-2
-        //                 cd provision/
-        //                 terraform $PRM_TERRAFORM_ACTION -input=false --auto-approve
-        //             """
-        //         }
-        //     }
-        // }
+        stage ('Running Terraform apply or destroy') {
+            steps {
+                script {
+                    echo "Running the terraform $PRM_TERRAFORM_ACTION command"
+                    sh """
+                        export AWS_DEFAULT_REGION=us-west-2
+                        cd provision/
+                        terraform $PRM_TERRAFORM_ACTION -input=false --auto-approve
+                    """
+                }
+            }
+        }
     }
 
     post {
