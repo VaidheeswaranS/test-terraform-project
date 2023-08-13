@@ -27,6 +27,7 @@
 > [!WARNING]
 > Change the security group, Image, IAM role and region according to your use case
 
+- Use the below command to provision the Jenkins instance
 	```
 	aws ec2 run-instances \
 	--image-id ami-089ffe32605122764 \
